@@ -1,10 +1,48 @@
-"use client"
-import React from 'react'
+"use client";
+import { useGlobalContext } from "@/app/context/globalContext";
+import { droplet } from "@/app/utils/Icons";
+import { kelvinToCelsius } from "@/app/utils/misc";
+import { Skeleton } from "@/components/ui/skeleton";
+import React from "react";
 
 function Humidity() {
+  const { forecast } = useGlobalContext();
+
+  if (!forecast || !forecast?.main || !forecast?.main?.humidity) {
+    return <Skeleton className=" h-[12rem] w-full" />;
+  }
+
+  const { humidity } = forecast?.main;
+
+  const getHumidityText = (humidity: number) => {
+    if (humidity < 30) {
+      return "Dry: May cause skin irritation";
+    }
+    if (humidity >= 30 && humidity < 50) {
+      return "Comfortable: Ideal for health and comfort";
+    }
+    if (humidity >= 50 && humidity < 70) {
+      return "Moderate: Sticky, may increase allergens";
+    }
+    if (humidity >= 70) {
+      return "High: Uncomfortable, mild growth risk";
+    }
+    return "unavailable: Humidity data not available";
+  };
   return (
-    <div>Humidity</div>
-  )
+    <div
+      className=" pt-6 pb-5 px-4 h-[12rem] border reounded-lg 
+    flex flex-col gap-8 dark:bg-dark-grey shadow-sm dark:shadow-none"
+    >
+      <div className="top">
+        <h2 className=" flex items-center gap-2 font-medium">
+          {droplet} Humidity
+        </h2>
+        <p className=" pt-4 text-2xl">{humidity}%</p>
+      </div>
+      <p className=" text-sm">{getHumidityText(humidity)}.</p>
+    </div>
+  );
 }
 
-export default Humidity
+export default Humidity;
