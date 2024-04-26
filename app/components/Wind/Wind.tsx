@@ -33,7 +33,7 @@ function Wind() {
           <Image
             src="/compass_arrow.svg"
             alt="compass"
-            className=" absolute top-0 left-[50%] transition-all duration-500 ease-in-out dark:invert"
+            className=" absolute topp left-[47%] transition-all duration-500 ease-in-out dark:invert"
             style={{
               transform: `rotate(${windDir}deg) translateX(-50%) `,
               height: "100%",
@@ -43,7 +43,7 @@ function Wind() {
           />
         </div>
         <p
-          className=" absolute top-1/2 left-1/2 translate-x-(-50%) translate-y-(-50%)
+          className=" absolute top-[46px] left-[77px] translate-x-(-50%) translate-y-(-50%)
          text-sm dark:text-white font-medium"
         >
           {Math.round(windSpeed)} m/s
