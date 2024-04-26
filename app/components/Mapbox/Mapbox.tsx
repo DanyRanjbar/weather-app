@@ -35,13 +35,13 @@ function Mapbox() {
       </div>
     );
   }
-  const position = [activeCityCoords.lat, activeCityCoords.lon];
+  const position: [any, any] = [activeCityCoords.lat, activeCityCoords.lon];
   return (
     <div className=" flex-1 basis-[50%] border rounded-lg">
       <MapContainer
         center={position}
         zoom={13}
-        scrollwheelZoom={false}
+        scrollWheelZoom={false}
         className=" rounded-lg m-4"
         style={{ height: "calc(100% - 2rem)", width: "calc(100% - 2rem)" }}
       >
